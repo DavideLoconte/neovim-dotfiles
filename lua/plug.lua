@@ -3,7 +3,6 @@
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-    
       -- [[ Theme ]]
     use { 'DanilaMihailov/beacon.nvim' }               -- cursor jump
     use {
@@ -12,4 +11,8 @@ return require('packer').startup(function(use)
         opt = true}
     }
     use { 'Mofiqul/dracula.nvim' }
+    
+    -- Configurations for Nvim LSP
+    use { 'neovim/nvim-lspconfig' }
+    use { 'nvim-treesitter/nvim-treesitter' }
 end)

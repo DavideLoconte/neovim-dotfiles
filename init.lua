@@ -12,3 +12,15 @@ require('opts')      -- Options
 require('keys')      -- Keymaps
 require('plug')      -- Pluginso
 
+local treesitter_configs = require 'nvim-treesitter.configs'
+
+treesitter_configs.setup {
+    ensure_installed = {"c", "go", "json", "html", "latex", "scala", "kotlin", "lua", "rust", "bash", "javascript", "java", "python", "cpp", "c_sharp" }, 
+    highlight = {
+        enable = true,
+    },
+    indent = {
+	    enable = true,
+    }	
+}
+
