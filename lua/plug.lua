@@ -13,6 +13,14 @@ return require('packer').startup(function(use)
     use { 'Mofiqul/dracula.nvim' }
     
     -- Configurations for Nvim LSP
-    use { 'neovim/nvim-lspconfig' }
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
+    use 'mfussenegger/nvim-dap'
+    use "nvim-lua/plenary.nvim"
+    use "jose-elias-alvarez/null-ls.nvim"
     use { 'nvim-treesitter/nvim-treesitter' }
+    use {'ms-jpq/coq_nvim', 'ms-jpq/coq.artifacts', 'ms-jpq/coq.thirdparty'}
 end)
