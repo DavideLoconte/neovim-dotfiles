@@ -23,4 +23,16 @@ return require('packer').startup(function(use)
     use "jose-elias-alvarez/null-ls.nvim"
     use { 'nvim-treesitter/nvim-treesitter' }
     use {'ms-jpq/coq_nvim', 'ms-jpq/coq.artifacts', 'ms-jpq/coq.thirdparty'}
+    use 'VonHeikemen/lsp-zero.nvim'
+
+    use {'hrsh7th/nvim-cmp'}
+    use {'hrsh7th/cmp-buffer'}
+    use {'hrsh7th/cmp-path'}
+    use {'saadparwaiz1/cmp_luasnip'}
+    use {'hrsh7th/cmp-nvim-lsp'}
+    use {'hrsh7th/cmp-nvim-lua'}
+
+    use {'L3MON4D3/LuaSnip'}
+    use {'rafamadriz/friendly-snippets'}
+
 end)
