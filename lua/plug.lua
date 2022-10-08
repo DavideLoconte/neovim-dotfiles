@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
         opt = true}
     }
     use { 'Mofiqul/dracula.nvim' }
+    use { "ellisonleao/gruvbox.nvim" }
     
     -- Configurations for Nvim LSP
     use {
