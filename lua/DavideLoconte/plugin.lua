@@ -18,6 +18,7 @@ require("lazy").setup({
 	},
 	{ 'morhetz/gruvbox' },
 	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+	{"nvim-treesitter/nvim-treesitter-context" },
 	{"ThePrimeagen/harpoon"},
 	{"mbbill/undotree"},
 	{"tpope/vim-fugitive"},
@@ -35,5 +36,12 @@ require("lazy").setup({
 			{'hrsh7th/cmp-nvim-lsp'}, -- Required
 			{'L3MON4D3/LuaSnip'},     -- Required
 		}
-	}
+	},
+    {"rhysd/vim-clang-format", dependencies = {
+        "kana/vim-operator-user",
+        "Shougo/vimproc.vim"
+    }},
+    {"mfussenegger/nvim-dap"},
+    {"rcarriga/nvim-dap-ui"},
+    {"0x00-ketsu/autosave.nvim"}
 })
