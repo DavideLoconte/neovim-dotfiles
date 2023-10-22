@@ -1,4 +1,5 @@
 local dap = require('dap')
+local compat = require('DavideLoconte.compat')
 
 vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
 vim.keymap.set("n", "<C-y>", dap.continue)
@@ -14,7 +15,7 @@ local action_state = require("telescope.actions.state")
 
 dap.adapters.lldb = {
   type = 'executable',
-  command = '/opt/homebrew/opt/llvm/bin/lldb-vscode',
+  command = compat.lldb_vscode,
   name = 'lldb'
 }
 

@@ -16,7 +16,7 @@ require("lazy").setup({
 		'nvim-telescope/telescope.nvim', tag = '0.1.2',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
-	{ 'morhetz/gruvbox' },
+	{'morhetz/gruvbox'},
 	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	{"nvim-treesitter/nvim-treesitter-context" },
 	{"ThePrimeagen/harpoon"},
