@@ -16,10 +16,14 @@ require("lazy").setup({
 		'nvim-telescope/telescope.nvim', tag = '0.1.2',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
-	{'morhetz/gruvbox'},
+    	{'morhetz/gruvbox'},
 	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	{"nvim-treesitter/nvim-treesitter-context" },
-	{"ThePrimeagen/harpoon"},
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
 	{"mbbill/undotree"},
 	{"tpope/vim-fugitive"},
 	{
@@ -37,11 +41,27 @@ require("lazy").setup({
 			{'L3MON4D3/LuaSnip'},     -- Required
 		}
 	},
-    {"rhysd/vim-clang-format", dependencies = {
-        "kana/vim-operator-user",
-        "Shougo/vimproc.vim"
-    }},
-    {"mfussenegger/nvim-dap"},
-    {"rcarriga/nvim-dap-ui"},
-    {"0x00-ketsu/autosave.nvim"}
+    	{"rhysd/vim-clang-format", dependencies = {
+        	"kana/vim-operator-user",
+        	"Shougo/vimproc.vim"
+    	}},
+    	{"mfussenegger/nvim-dap"},
+        {
+            "rcarriga/nvim-dap-ui", 
+            dependencies = {
+                "mfussenegger/nvim-dap",
+                "nvim-neotest/nvim-nio"
+            }
+        },
+    	{"0x00-ketsu/autosave.nvim"},
+    	{"cappyzawa/trim.nvim"},
+	{
+		"Exafunction/codeium.vim",
+		config = function ()
+			vim.keymap.set('i', '<Tab>', function () return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+		    	vim.keymap.set('i', '<C-j>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true, silent = true })
+			vim.keymap.set('i', '<C-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true, silent = true })
+			vim.keymap.set('i', '<C-backspace>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
+		end
+	}
 })
