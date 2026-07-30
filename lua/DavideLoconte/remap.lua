@@ -11,21 +11,16 @@ vim.keymap.set("n", "<leader>h", vim.diagnostic.open_float)
 local fzf = require("fzf-lua")
 
 local file_icons = true
-local netrw_dir = vim.b.netrw_curdir
-local g = vim.g
-local file_dir
 
-if netrw_dir ~= nil then
-	file_dir = netrw_dir
-else
-	file_dir = vim.fn.expand("%:p:h")
+-- Resolve the current buffer's directory at call time, not config load.
+local function file_dir()
+	return vim.b.netrw_curdir or vim.fn.expand("%:p:h")
 end
 
 vim.keymap.set("n", "<leader>ff", function()
 	fzf.files({
-		cwd = file_dir,
+		cwd = file_dir(),
 		file_icons = false,
-		g,
 	})
 end)
 
@@ -38,14 +33,14 @@ end)
 
 vim.keymap.set("n", "<leader>fg", function()
 	fzf.git_files({
-		cwd = file_dir,
+		cwd = file_dir(),
 		file_icons = file_icons,
 	})
 end)
 
 vim.keymap.set("n", "<leader>gg", function()
 	fzf.live_grep({
-		cwd = file_dir,
+		cwd = file_dir(),
 		file_icons = file_icons,
 	})
 end)

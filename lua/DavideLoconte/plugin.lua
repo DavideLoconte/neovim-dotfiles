@@ -50,12 +50,20 @@ require("lazy").setup({
 	{ "MeanderingProgrammer/render-markdown.nvim" },
 	{ "lervag/vimtex", lazy = false },
 	{
-		"nvim-telescope/telescope.nvim",
-		version = "*",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		},
+		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
+		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = {
+					"c", "cpp", "python", "javascript", "typescript", "rust",
+					"html", "css", "markdown", "markdown_inline", "json", "yaml",
+					"lua", "bash", "cmake", "rst", "vim", "vimdoc",
+				},
+				highlight = { enable = true },
+				indent = { enable = true },
+			})
+		end,
 	},
 })
 
@@ -63,3 +71,6 @@ require("lazy").setup({
 local icons = require("mini.icons")
 icons.setup()
 icons.mock_nvim_web_devicons()
+require("mini.statusline").setup()
+require("mini.diff").setup()
+require("mini.pairs").setup()

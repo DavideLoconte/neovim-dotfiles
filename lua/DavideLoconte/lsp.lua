@@ -47,8 +47,7 @@ vim.lsp.config.lua_ls = {
 vim.lsp.enable({
 	"clangd", -- C, C++
 	"ruff",
-	"pyright",
-	"uv", -- Python
+	"pyright", -- Python
 	"ts_ls", -- JavaScript, TypeScript
 	"rust_analyzer", -- Rust
 	"html", -- HTML
@@ -89,31 +88,9 @@ require("conform").setup({
 		json = { "prettier" },
 		yaml = { "prettier" },
 		tex = { "latexindent" },
-		rst = { "rstfmt" },
 		cmake = { "cmake_format" },
 		lua = { "stylua" },
 		sh = { "shfmt" },
 	},
-	{},
+	format_on_save = { lsp_format = "fallback", timeout_ms = 1000 },
 })
-
--- Auto format on save (overrides the :w :wa :wq commands).
--- Auto format will not be triggered by autosave
-vim.api.nvim_create_user_command("FormatWrite", function()
-	require("conform").format({ lsp_fallback = true, async = false })
-	vim.cmd("write")
-end, {})
-
-vim.api.nvim_create_user_command("FormatWriteQuit", function()
-	require("conform").format({ lsp_fallback = true, async = false })
-	vim.cmd("wq")
-end, {})
-
-vim.api.nvim_create_user_command("FormatWriteAll", function()
-	require("conform").format({ lsp_fallback = true, async = false })
-	vim.cmd("wa")
-end, {})
-
-vim.keymap.set("ca", "wa", "FormatWriteAll")
-vim.keymap.set("ca", "wq", "FormatWriteQuit")
-vim.keymap.set("ca", "w", "FormatWrite")

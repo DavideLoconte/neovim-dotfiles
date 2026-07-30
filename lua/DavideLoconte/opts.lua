@@ -46,10 +46,8 @@ vim.opt.colorcolumn = "80,100,120"
 
 vim.opt.clipboard = "unnamedplus"
 
-vim.diagnostic.enable = true
 vim.diagnostic.config({
 	virtual_lines = false,
 })
 
 vim.opt.encoding = "utf-8"
-vim.opt.autocomplete = true
