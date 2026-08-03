@@ -1,8 +1,3 @@
--- Color scheme
-vim.cmd([[set background=dark]])
-vim.cmd([[colorscheme gruvbox]])
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-
 -- Line numbering
 vim.api.nvim_create_autocmd({ "InsertLeave", "CmdlineLeave" }, {
 	callback = function()
@@ -36,7 +31,9 @@ vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.termguicolors = true
+-- Use the terminal's own ANSI palette instead of a colorscheme's hardcoded
+-- truecolor values, while still allowing 256-color rendering.
+vim.opt.termguicolors = false
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
