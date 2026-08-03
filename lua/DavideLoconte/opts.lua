@@ -31,9 +31,7 @@ vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
--- Use the terminal's own ANSI palette instead of a colorscheme's hardcoded
--- truecolor values, while still allowing 256-color rendering.
-vim.opt.termguicolors = false
+vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"

@@ -14,6 +14,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	{
+		"Mofiqul/adwaita.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd([[colorscheme adwaita]])
+		end,
+	},
+
 	{ "nvim-mini/mini.nvim", version = "*" },
 
 	{

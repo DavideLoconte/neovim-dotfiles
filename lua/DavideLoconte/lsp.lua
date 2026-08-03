@@ -13,7 +13,6 @@ require("mason-lspconfig").setup({
 		"marksman", -- Markdown
 		"texlab", -- LaTeX
 		"esbonio", -- reStructuredText
-		"cmake", -- CMake
 		"lua_ls", -- Lua
 		"bashls", -- Bash
 		"jsonls", -- JSON
@@ -27,7 +26,6 @@ require("mason-tool-installer").setup({
 		"prettier", -- JavaScript, TypeScript, HTML, CSS, Markdown, JSON, YAML
 		"stylua", -- Lua
 		"shfmt", -- Bash
-		"cmakelang", -- CMake
 		"latexindent", -- LaTeX
 	},
 })
@@ -55,7 +53,6 @@ vim.lsp.enable({
 	"marksman", -- Markdown
 	"texlab", -- LaTeX
 	"esbonio", -- reStructuredText
-	"cmake", -- CMake
 	"lua_ls", -- Lua
 	"bashls", -- Bash
 	"jsonls", -- JSON
