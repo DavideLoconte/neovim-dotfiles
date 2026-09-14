@@ -1,6 +1,6 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -17,30 +17,7 @@ require("lazy").setup({
 	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true, lazy = false },
 	{ "nvim-mini/mini.nvim", version = "*" },
 
-	{
-		"0x00-ketsu/autosave.nvim",
-		opts = {
-			write_all_buffers = false,
-			conditions = {
-				exists = true,
-				modifiable = true,
-				filename_is_not = {},
-				filetype_is_not = {},
-			},
-		},
-	},
-
 	{ "stevearc/conform.nvim" },
-
-	{
-		"johnfrankmorgan/whitespace.nvim",
-		opts = {
-			highlight = "DiffDelete",
-			ignored_filetypes = { "TelescopePrompt", "Trouble", "help", "dashboard" },
-			ignore_terminal = true,
-			return_cursor = true,
-		},
-	},
 
 	{ "neovim/nvim-lspconfig" },
 	{ "mason-org/mason.nvim" },
@@ -48,7 +25,15 @@ require("lazy").setup({
 	{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 	{ "ibhagwan/fzf-lua" },
 	{ "MeanderingProgrammer/render-markdown.nvim" },
-	{ "lervag/vimtex", lazy = false },
+	{
+		"lervag/vimtex",
+		lazy = false,
+		init = function()
+			vim.g.vimtex_view_method = "skim"
+			vim.g.vimtex_view_skim_sync = 1 -- forward search after compile
+			vim.g.vimtex_view_skim_activate = 1 -- focus Skim on forward search
+		end,
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		branch = "master",
@@ -74,3 +59,5 @@ icons.mock_nvim_web_devicons()
 require("mini.statusline").setup()
 require("mini.diff").setup()
 require("mini.pairs").setup()
+require("mini.surround").setup()
+require("mini.files").setup()

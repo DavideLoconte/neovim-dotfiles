@@ -1,24 +1,25 @@
+local servers = {
+	"clangd", -- C, C++
+	"ruff",
+	"pyright", -- Python
+	"ts_ls", -- JavaScript, TypeScript
+	"rust_analyzer", -- Rust
+	"html", -- HTML
+	"cssls", -- CSS
+	"marksman", -- Markdown
+	"texlab", -- LaTeX
+	"cmake", -- CMake
+	"lua_ls", -- Lua
+	"bashls", -- Bash
+	"jsonls", -- JSON
+	"yamlls", -- YAML
+}
+
 -- Install lsps
 require("mason").setup({})
 
 require("mason-lspconfig").setup({
-	ensure_installed = {
-		"clangd", -- C, C++
-		"ruff",
-		"pyright", -- Python
-		"ts_ls", -- JavaScript, TypeScript
-		"rust_analyzer", -- Rust
-		"html", -- HTML
-		"cssls", -- CSS
-		"marksman", -- Markdown
-		"texlab", -- LaTeX
-		"esbonio", -- reStructuredText
-		"cmake", -- CMake
-		"lua_ls", -- Lua
-		"bashls", -- Bash
-		"jsonls", -- JSON
-		"yamlls", -- YAML
-	},
+	ensure_installed = servers,
 })
 
 require("mason-tool-installer").setup({
@@ -43,24 +44,16 @@ vim.lsp.config.lua_ls = {
 	},
 }
 
+-- Pyright type-checks only, ruff owns lint and format
+vim.lsp.config.pyright = {
+	settings = {
+		pyright = { disableOrganizeImports = true },
+		python = { analysis = { ignore = { "*" } } },
+	},
+}
+
 -- Enable lsps
-vim.lsp.enable({
-	"clangd", -- C, C++
-	"ruff",
-	"pyright", -- Python
-	"ts_ls", -- JavaScript, TypeScript
-	"rust_analyzer", -- Rust
-	"html", -- HTML
-	"cssls", -- CSS
-	"marksman", -- Markdown
-	"texlab", -- LaTeX
-	"esbonio", -- reStructuredText
-	"cmake", -- CMake
-	"lua_ls", -- Lua
-	"bashls", -- Bash
-	"jsonls", -- JSON
-	"yamlls", -- YAML
-})
+vim.lsp.enable(servers)
 
 -- Enable autocomplete
 vim.api.nvim_create_autocmd("LspAttach", {

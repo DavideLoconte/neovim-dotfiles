@@ -3,7 +3,10 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 -- Map neovim functions
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", function()
+	local name = vim.api.nvim_buf_get_name(0)
+	require("mini.files").open(name ~= "" and name or nil)
+end)
 vim.keymap.set("i", "jj", "<ESC>")
 vim.keymap.set("n", "<leader>h", vim.diagnostic.open_float)
 
@@ -51,3 +54,6 @@ vim.keymap.set("n", "<leader>rh", function()
 		file_icons = file_icons,
 	})
 end)
+
+vim.keymap.set("n", "<leader>fb", fzf.buffers)
+vim.keymap.set("n", "<leader>fr", fzf.resume)
