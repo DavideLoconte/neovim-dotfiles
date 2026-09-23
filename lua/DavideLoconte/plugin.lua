@@ -24,14 +24,17 @@ require("lazy").setup({
 	{ "mason-org/mason-lspconfig.nvim" },
 	{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 	{ "ibhagwan/fzf-lua" },
-	{ "MeanderingProgrammer/render-markdown.nvim" },
+	{ "MeanderingProgrammer/render-markdown.nvim", ft = "markdown" },
 	{
 		"lervag/vimtex",
 		lazy = false,
 		init = function()
-			vim.g.vimtex_view_method = "skim"
-			vim.g.vimtex_view_skim_sync = 1 -- forward search after compile
-			vim.g.vimtex_view_skim_activate = 1 -- focus Skim on forward search
+			local compat = require("DavideLoconte.compat")
+			vim.g.vimtex_view_method = compat.vimtex_view_method
+			vim.g.vimtex_view_general_viewer = compat.vimtex_view_general_viewer
+			vim.g.vimtex_view_general_options = compat.vimtex_view_general_options
+			vim.g.vimtex_view_skim_sync = compat.vimtex_view_skim_sync
+			vim.g.vimtex_view_skim_activate = compat.vimtex_view_skim_activate
 		end,
 	},
 	{
@@ -41,9 +44,9 @@ require("lazy").setup({
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
-					"c", "cpp", "python", "javascript", "typescript", "rust",
+					"c", "cpp", "python", "javascript", "typescript", "tsx", "rust",
 					"html", "css", "markdown", "markdown_inline", "json", "yaml",
-					"lua", "bash", "cmake", "rst", "vim", "vimdoc",
+					"lua", "bash", "cmake", "rst", "vim", "vimdoc", "java",
 				},
 				highlight = { enable = true },
 				indent = { enable = true },

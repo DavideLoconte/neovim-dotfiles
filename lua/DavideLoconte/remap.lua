@@ -1,7 +1,3 @@
--- Remap leader
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
-
 -- Map neovim functions
 vim.keymap.set("n", "<leader>pv", function()
 	local name = vim.api.nvim_buf_get_name(0)

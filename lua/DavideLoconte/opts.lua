@@ -41,7 +41,9 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = vim.fn.stdpath("data") .. "/.vim/undodir"
+local undodir = vim.fn.stdpath("data") .. "/.vim/undodir"
+vim.fn.mkdir(undodir, "p")
+vim.opt.undodir = undodir
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -61,6 +63,15 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "100"
 
 vim.opt.clipboard = "unnamedplus"
+
+do
+	local compat = require("DavideLoconte.compat")
+	local has_clipboard = vim.fn.executable(compat.clipboard_bin) == 1
+		or vim.fn.executable("wl-copy") == 1 -- alternative Linux tool
+	if not has_clipboard then
+		vim.notify("clipboard tool not found: install " .. compat.clipboard_tool, vim.log.levels.WARN)
+	end
+end
 
 -- Flash what was yanked
 vim.api.nvim_create_autocmd("TextYankPost", {
